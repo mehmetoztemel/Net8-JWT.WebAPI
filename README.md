@@ -1,7 +1,3 @@
-Tabii, işte bir örnek README dosyası:
-
----
-
 # .NET Core JWT Token Projesi README
 
 Bu proje, .NET Core kullanılarak JWT (JSON Web Token) tabanlı kimlik doğrulama ve yetkilendirme sağlayan bir örnek uygulamadır.
