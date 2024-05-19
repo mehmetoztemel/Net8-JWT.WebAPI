@@ -35,6 +35,7 @@ Bu uygulama aşağıdaki API Endpoint'lerini sağlar:
 
 - **POST /api/auth/register:** Yeni bir kullanıcı kaydı oluşturur.
 - **POST /api/auth/login:** Kullanıcı girişi yapar ve JWT token döndürür.
+- **GET /api/values/get:** Yetkilendirilmiş bir kaynağa erişim sağlar. Request'in headerında elde edilen token bilgisi gönderilmelidir.
 
 ## Katkıda Bulunma
 
