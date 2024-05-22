@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Net8_JWT.WebAPI.Middlewares;
 using Net8_JWT.WebAPI.Services;
 using Net8_JWT.WebAPI.Utilities;
 using System.Text;
@@ -10,10 +11,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JWT_TokenSettings"));
+
+
 var provider = builder.Services.BuildServiceProvider();
 var jwtSettings = provider.GetRequiredService<IOptionsMonitor<JwtOptions>>();
 
 builder.Services.AddControllers();
+
 
 #region Swagger with JWT configuration
 builder.Services.AddEndpointsApiExplorer();
@@ -78,6 +82,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseMyCustomMiddlewares();
 
 app.MapControllers();
 

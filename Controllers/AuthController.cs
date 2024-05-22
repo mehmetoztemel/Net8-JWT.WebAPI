@@ -34,7 +34,8 @@ namespace Net8_JWT.WebAPI.Controllers
             AppUser? user = GlobalData.Users.FirstOrDefault(x => x.UserName == request.UserName);
             if (user is null)
             {
-                return BadRequest(new { Message = "User cannot find" });
+                throw new Exception("User cannot find");
+                //return BadRequest(new { Message = "User cannot find" });
             }
 
             bool checkPassword = HashingHelper.VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt);
