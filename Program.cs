@@ -12,7 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JWT_TokenSettings"));
 
-
 var provider = builder.Services.BuildServiceProvider();
 var jwtSettings = provider.GetRequiredService<IOptionsMonitor<JwtOptions>>();
 
@@ -52,6 +51,7 @@ builder.Services.AddSwaggerGen(setup =>
      });
 });
 #endregion
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {

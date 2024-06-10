@@ -1,4 +1,5 @@
 ﻿
+using System.Net;
 using System.Text;
 
 namespace Net8_JWT.WebAPI.Middlewares
@@ -18,8 +19,10 @@ namespace Net8_JWT.WebAPI.Middlewares
 
         public async Task InvokeAsync(HttpContext context)
         {
+            IPAddress remoteIp = context.Connection.RemoteIpAddress!;
             try
             {
+
                 if (!Directory.Exists(Path.Combine(FolderName)))
                 {
                     Directory.CreateDirectory(Path.Combine(FolderName));
@@ -28,10 +31,11 @@ namespace Net8_JWT.WebAPI.Middlewares
                 //File.AppendText StreamWriter ile aynı işi yapıyor
                 using (StreamWriter writer = File.AppendText(Path.Combine(FolderName, FileName)))
                 {
+
                     writer.Write("Request ");
                     writer.Write("\rDate Time: ");
                     writer.WriteLine($"{DateTime.Now.ToLongTimeString()}, {DateTime.Now.ToLongDateString()}");
-                    writer.WriteLine($"IP Address: {context.Connection.RemoteIpAddress!.ToString()}");
+                    writer.WriteLine($"IP Address: {remoteIp.ToString()}");
                     writer.WriteLine($"TraceId: {context.TraceIdentifier}");
                     writer.WriteLine($"Path: {context.Request.Path}");
                     writer.WriteLine($"Method: {context.Request.Method}");
@@ -48,7 +52,7 @@ namespace Net8_JWT.WebAPI.Middlewares
                     writer.Write("Exception ");
                     writer.Write("\rDate Time: ");
                     writer.WriteLine($"{DateTime.Now.ToLongTimeString()}, {DateTime.Now.ToLongDateString()}");
-                    writer.WriteLine($"IP Address: {context.Connection.RemoteIpAddress!.ToString()}");
+                    writer.WriteLine($"IP Address: {remoteIp.ToString()}");
                     writer.WriteLine($"TraceId: {context.TraceIdentifier}");
                     writer.WriteLine($"Path: {context.Request.Path}");
                     writer.WriteLine($"Method: {context.Request.Method}");

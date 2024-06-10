@@ -35,7 +35,6 @@ namespace Net8_JWT.WebAPI.Controllers
             if (user is null)
             {
                 throw new Exception("User cannot find");
-                //return BadRequest(new { Message = "User cannot find" });
             }
 
             bool checkPassword = HashingHelper.VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt);
