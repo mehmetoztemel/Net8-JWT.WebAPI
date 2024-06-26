@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Net8_JWT.WebAPI.Middlewares;
 using Net8_JWT.WebAPI.Services;
 using Net8_JWT.WebAPI.Utilities;
 using System.Text;
@@ -82,8 +81,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseMyCustomMiddlewares();
 
 app.MapControllers();
 
